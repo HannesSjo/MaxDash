@@ -15,15 +15,6 @@ def is_internet_connected():
     except urllib.error.URLError:
         return False
 
-# Read paths from the config file
-with open(config_file_path, 'r') as config_file:
-    config_data = json.load(config_file)
-
-# Extract paths from the config data
-github_repo_url = config_data.get('github_repo_url', '')
-local_repo_path = config_data.get('local_repo_path', '')
-main_script_path = config_data.get('main_script_path', '')
-
 # Check if the config file exists
 if not os.path.exists(config_file_path):
     default_config = {
@@ -37,6 +28,15 @@ if not os.path.exists(config_file_path):
     
     print("Config file created with default settings. Please edit the config file.")
 else:
+    # Read paths from the config file
+    with open(config_file_path, 'r') as config_file:
+        config_data = json.load(config_file)
+
+    # Extract paths from the config data
+    github_repo_url = config_data.get('github_repo_url', '')
+    local_repo_path = config_data.get('local_repo_path', '')
+    main_script_path = config_data.get('main_script_path', '')
+
     # Check for internet connectivity
     if is_internet_connected():
         # Pull updates from the GitHub repository
