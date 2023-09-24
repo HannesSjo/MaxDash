@@ -20,7 +20,8 @@ if not os.path.exists(config_file_path):
     default_config = {
         "github_repo_url": "https://github.com/HannesSjo/MaxDash",
         "local_repo_path": "../",
-        "main_script_path": "../maxdash/main.py"
+        "main_script_path": "../maxdash/",
+        "main_script_filename": "main.py"
     }
     
     with open(config_file_path, 'w') as config_file:
@@ -36,6 +37,7 @@ else:
     github_repo_url = config_data.get('github_repo_url', '')
     local_repo_path = config_data.get('local_repo_path', '')
     main_script_path = config_data.get('main_script_path', '')
+    main_script_filename = config_data.get('main_script_filename', '')
 
     # Check for internet connectivity
     if is_internet_connected():
@@ -47,6 +49,6 @@ else:
         print("GitHub repository updated.")
         
         # Start the main.py script
-        subprocess.Popen(["python", main_script_path])
+        subprocess.Popen(["python3", main_script_path + main_script_filename], cwd=os.path.dirname(main_script_path))
     else:
         print("No internet connection. Skipping GitHub repository update.")
