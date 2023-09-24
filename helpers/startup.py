@@ -28,8 +28,8 @@ main_script_path = config_data.get('main_script_path', '')
 if not os.path.exists(config_file_path):
     default_config = {
         "github_repo_url": "https://github.com/HannesSjo/MaxDash",
-        "local_repo_path": "/..",
-        "main_script_path": "/../maxdash/main.py"
+        "local_repo_path": "../",
+        "main_script_path": "../maxdash/main.py"
     }
     
     with open(config_file_path, 'w') as config_file:
